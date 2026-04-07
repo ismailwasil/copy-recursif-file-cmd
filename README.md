@@ -105,6 +105,78 @@ for /r "D:\Tahun 2026" %f in (*Bar TW 4*) do copy "%f" "D:\Kumpulan\"
 ```
 👉 Ini lebih simpel dan biasanya cukup, tanpa perlu mikirin ekstensi.
 ##
+##
+##
+## 🧠 ADVANCED USAGE
+
+### 🟡 8. Hindari File Tertimpa (Rename Otomatis)
+
+Menambahkan nama folder asal ke file:
+```
+for /r "D:\Tahun 2026" %f in (*Bar TW 4*) do copy "%f" "D:\Kumpulan\%~nxf_%~pf"
+```
+⚠️ **Catatan:**
+
+* `%~nxf` → nama file + ekstensi
+* `%~pf` → path folder (akan panjang)
+## 
+
+### ✅ Versi lebih rapi (pakai nama folder saja)
+```
+for /r "D:\Tahun 2026" %f in (*Bar TW 4*) do (
+  set "folder=%~dpf"
+  for %%a in ("%~dpf.") do copy "%f" "D:\Kumpulan\%%~nxa_%~nxf"
+)
+```
+##
+### 🟢 9. Skip File Duplikat (Tidak Ditimpa)
+```
+for /r "D:\Tahun 2026" %f in (*Bar TW 4*) do if not exist "D:\Kumpulan\%~nxf" copy "%f" "D:\Kumpulan\"
+```
+##
+
+### 🔵 10. Hanya Copy File Terbaru Saja
+
+Gunakan robocopy:
+```
+robocopy "D:\Tahun 2026" "D:\Kumpulan" *Bar TW 4* /S /XO
+```
+##### Penjelasan:
+* `/XO` → hanya copy file yang lebih baru
+##
+
+### 🟣 11. Copy Berdasarkan Tanggal (Misalnya Hari Ini)
+```
+forfiles /P "D:\Tahun 2026" /S /M *Bar TW 4* /D 0 /C "cmd /c copy @path D:\Kumpulan\"
+```
+##
+
+### 🟠 12. Pattern Lebih Fleksibel
+```
+*Bar*TW*4*
+```
+
+Menangkap:
+* Bar TW 4
+* Bar_TW_4
+* Bar-TW-4
+##
+
+### 🔴 13. Logging (Simpan Hasil Copy)
+```
+robocopy "D:\Tahun 2026" "D:\Kumpulan" *Bar TW 4* /S /LOG:hasil_copy.txt
+```
+
+##
+## 📌 KESIMPULAN
+| Kebutuhan | Solusi |
+| --- | :---: |
+| Semua file | `for /r` |
+| Banyak ekstensi | loop `%e` |
+| Cepat & stabil | robocopy |
+| Hindari overwrite | rename / skip |
+| Hanya terbaru | `/XO` |
+| Ada Log | `/LOG` |
 
 
 
