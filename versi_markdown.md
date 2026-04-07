@@ -148,12 +148,12 @@ robocopy "D:\Tahun 2026" "D:\Kumpulan" *Bar TW 4* /S /LOG:hasil_copy.txt
 ```
 
 ##
-> [!IMPORTANT]
-> 📌 KESIMPULAN\
-**Kebutuhan**	    >>>  **Solusi**\
-Semua file	       >>>  `for /r`\
-Banyak ekstensi   >>>	 loop `%e`\
-Cepat & stabil    >>>	 robocopy\
-Hindari overwrite >>>	 rename / skip\
-Hanya terbaru     >>>	 `/XO`\
-Ada log           >>>	 `/LOG`
+## 📌 KESIMPULAN
+| Kebutuhan | Solusi |
+| --- | :---: |
+| Semua file | `for /r` |
+| Banyak ekstensi | loop `%e` |
+| Cepat & stabil | robocopy |
+| Hindari overwrite | rename / skip |
+| Hanya terbaru | `/XO` |
+| Ada Log | `/LOG` |
