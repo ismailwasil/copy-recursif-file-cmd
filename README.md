@@ -72,7 +72,7 @@ Ini akan tetap menangkap:
 Jawaban singkatnya: **bisa, tapi tidak langsung dalam satu pattern CMD biasa** ❗\
 CMD (```for / copy```) tidak mendukung multi-ekstensi seperti ```*.xlsx;*.pdf``` dalam satu ekspresi.\
 Tapi ada beberapa cara workaround yang tetap “satu perintah” 👇
-
+##
 #### ✅ Cara 1: Pakai beberapa perintah dalam satu baris
   Gunakan `&` untuk menggabungkan:
   ```
@@ -82,7 +82,7 @@ Tapi ada beberapa cara workaround yang tetap “satu perintah” 👇
   ```
   ✔ Ini tetap satu kali enter\
   ❌ Tapi agak panjang
-
+##
 #### ✅ Cara 2: Loop ekstensi (lebih rapi 👍)
   Ini yang paling direkomendasikan:
   ```
@@ -91,3 +91,36 @@ Tapi ada beberapa cara workaround yang tetap “satu perintah” 👇
   ✔ Kelebihan:
   * Lebih singkat
   * Tinggal tambah ekstensi di `(xlsx pdf docx txt dll)`
+##
+#### ⚠️ Kalau pakai file `.bat`
+Harus jadi:
+```
+for %%e in (xlsx pdf docx) do for /r "D:\Tahun 2026" %%f in (*Bar TW 4*.%%e) do copy "%%f" "D:\Kumpulan\"
+```
+##
+#### 🔥 Cara 3 (paling simpel): tetap ambil semua ekstensi
+Kalau sebenarnya semua file yang ada "Bar TW 4" memang mau diambil:
+```
+for /r "D:\Tahun 2026" %f in (*Bar TW 4*) do copy "%f" "D:\Kumpulan\"
+```
+👉 Ini lebih simpel dan biasanya cukup, tanpa perlu mikirin ekstensi.
+##
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
